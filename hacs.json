@@ -1,7 +1,7 @@
 {
   "name": "VMC Server",
   "zip_release": true,
-  "filename": "vmc_server.zip",
+  "filename": "vmc_sensor.zip",
   "render_readme": true,
   "country": [
     "EN",
