@@ -1,0 +1,9 @@
+{
+    "domain": "vmc_sensor",
+    "name": "Vmc Sensor",
+    "version": "1.0",
+    "documentation": "https://github.com/Invernomut0/VMC_Sensor",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": []
+  }
