@@ -5,5 +5,7 @@
     "documentation": "https://github.com/Invernomut0/VMC_Sensor",
     "dependencies": [],
     "codeowners": [],
-    "requirements": []
+    "requirements": [],
+    "config_flow": true,
+    "icon": "avmc.svg"
   }
