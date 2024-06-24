@@ -7,5 +7,7 @@
     "codeowners": [],
     "requirements": [],
     "config_flow": true,
-    "icon": "avmc.svg"
+    "icons": {
+    "default": "avmc.png"
+  }
   }

@@ -29,7 +29,15 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     vmc_sensor = VmcSensor(device_name)
     dehumidification_sensor = DehumidificationSensor(device_name)
     humidity_alarm_sensor = HumidityAlarmSensor(device_name)
-    async_add_entities([vmc_sensor, dehumidification_sensor, humidity_alarm_sensor])
+    last_message_sensor = LastMessage(device_name)
+    async_add_entities(
+        [
+            vmc_sensor,
+            dehumidification_sensor,
+            humidity_alarm_sensor,
+            last_message_sensor,
+        ]
+    )
 
 
 class VmcSensor(Entity):
@@ -37,10 +45,6 @@ class VmcSensor(Entity):
         self._name = f"{device_name} VMC Sensor"
         self._state = STATE_UNKNOWN
         self._device_name = device_name
-        self._attributes = {
-            "Deumidificazione": STATE_UNKNOWN,
-            "Allarme_Umidità": STATE_UNKNOWN,
-        }
 
     @property
     def name(self):
@@ -65,11 +69,34 @@ class VmcSensor(Entity):
         what = data.get("what")
 
         if who == 25 and where == "231":
-            if what == 24:
+            if what == 22:
                 self._state = "off"
-            elif what == 22:
+            elif what == 24:
                 self._state = "on"
             self.async_write_ha_state()
+
+
+class LastMessage(Entity):
+    def __init__(self, device_name):
+        self._name = f"{device_name} LastMessage"
+        self._state = STATE_UNKNOWN
+        self._device_name = device_name
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def state(self):
+        return self._state
+
+    async def async_added_to_hass(self):
+        self.hass.bus.async_listen("myhome_message_event", self.handle_event)
+
+    @callback
+    def handle_event(self, event):
+        self._state = str(event.data)
+        self.async_write_ha_state()
 
 
 class DehumidificationSensor(Entity):
