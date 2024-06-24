@@ -1,0 +1,30 @@
+{
+    "config": {
+      "step": {
+        "user": {
+          "title": "Setup VMC Sensor",
+          "description": "Configure your VMC Sensor.",
+          "data": {
+            "device_name": "Name of the VMC device"
+          }
+        }
+      },
+      "error": {
+        "name_exists": "The name already exists."
+      },
+      "abort": {
+        "single_instance_allowed": "Only a single configuration of VMC Sensor is allowed."
+      }
+    },
+    "options": {
+      "step": {
+        "init": {
+          "title": "VMC Sensor Options",
+          "description": "Configure options for your VMC Sensor.",
+          "data": {
+            "device_name": "Update the name of the VMC device"
+          }
+        }
+      }
+    }
+  }
