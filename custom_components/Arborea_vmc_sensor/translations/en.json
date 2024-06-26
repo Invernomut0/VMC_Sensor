@@ -2,10 +2,10 @@
     "config": {
       "step": {
         "user": {
-          "title": "Setup VMC Sensor",
-          "description": "Configure your VMC Sensor.",
+          "title": "Setup VMC",
+          "description": "ALPHA Version - Arborea Release",
           "data": {
-            "device_name": "Name of the VMC device"
+            "device_name": "Name of the VMC sensor device"
           }
         }
       },

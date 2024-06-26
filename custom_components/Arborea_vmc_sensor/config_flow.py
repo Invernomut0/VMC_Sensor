@@ -17,7 +17,10 @@ class VmcSensorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input=None):
         if user_input is not None:
             return self.async_create_entry(
-                title=user_input["device_name"], data=user_input
+                title=user_input["device_name"],
+                data={
+                    "device_name": user_input["device_name"],
+                },
             )
 
         return self.async_show_form(
@@ -26,11 +29,9 @@ class VmcSensorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 {
                     vol.Required(
                         "device_name",
-                        description="Enter a unique name for your VMC device",
                     ): cv.string,
-                }
+                },
             ),
-            description_placeholders={"device_name": "Name of the VMC device"},
         )
 
 
@@ -46,17 +47,5 @@ class VmcSensorOptionsFlowHandler(config_entries.OptionsFlow):
             return self.async_create_entry(title="", data=user_input)
 
         return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema(
-                {
-                    vol.Optional(
-                        "device_name",
-                        default=self.config_entry.data.get("device_name", ""),
-                        description="Update the name of the VMC device",
-                    ): cv.string,
-                }
-            ),
-            description_placeholders={
-                "device_name": "Update the name of the VMC device"
-            },
+            step_id="user", data_schema=vol.Schema({vol.Required("password"): str})
         )
