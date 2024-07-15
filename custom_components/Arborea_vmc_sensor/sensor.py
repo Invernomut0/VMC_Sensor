@@ -30,14 +30,14 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     dehumidification_sensor = DehumidificationSensor(device_name)
     vmc_sensor = VmcSensor(device_name, dehumidification_sensor)
     humidity_alarm_sensor = HumidityAlarmSensor(device_name)
-    last_message_sensor = LastMessages(device_name)
+    #last_message_sensor = LastMessages(device_name)
     last_interesting_message_sensor = LastInterestingMessages(device_name)
     async_add_entities(
         [
             vmc_sensor,
             dehumidification_sensor,
             humidity_alarm_sensor,
-            last_message_sensor,
+            #last_message_sensor,
             last_interesting_message_sensor,
         ]
     )
